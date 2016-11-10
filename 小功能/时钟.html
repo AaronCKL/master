@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <style type="text/css">
+        #canvas{
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300">
+    </canvas>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById("canvas");
+    var cans = canvas.getContext("2d");
+	var ss=[],aa=0,dd=[],ww=[];
+	var today=new Date();
+	var hh=today.getMinutes();
+    var zz=today.getHours()%12*5
+	zz=zz+Math.floor(hh/12);
+    var ll=today.getSeconds();
+	cans.font = "bold 14px Arial";
+    cans.textAlign="center";
+	cans.textBaseline="middle";
+	cans.fillStyle="green";
+	for(var times=0; times<60; times++) {
+      var hudu = (2*Math.PI / 360) * 6 * times;
+	  ss[times]={};
+	  dd[times]={};
+	  ww[times]={};
+        ss[times].X = 150 + Math.sin(hudu) * 85;
+        ss[times].Y = 150 - Math.cos(hudu) * 85;
+		dd[times].X = 150 + Math.sin(hudu) * 65;
+        dd[times].Y = 150 - Math.cos(hudu) * 65;
+		ww[times].X = 150 + Math.sin(hudu) * 45;
+        ww[times].Y = 150 - Math.cos(hudu) * 45;
+		if(times%5==0)
+	  {
+	       if(aa==0)
+		   aa=12;
+	       cans.fillText(aa,150 + Math.sin(hudu) * 93,150 - Math.cos(hudu) * 93);
+		   if(aa==12)
+		   aa=0;
+		   aa++;
+	  }   
+       }
+	       cans.beginPath();
+           cans.arc(150,150,112,0,2*Math.PI,false);
+           cans.moveTo(252,150);
+           cans.arc(150,150,102,0,2*Math.PI,false);
+		   cans.strokeStyle = 'red';
+		   cans.stroke();
+	function nihao(c,s){
+		    cans.strokeStyle = 'red';
+            cans.moveTo(150,150);//第一个起点
+            cans.lineTo(c,s);
+	}
+	function hao(){
+	       cans.beginPath();
+           cans.moveTo(150,150);
+           cans.arc(150,150,86,0,2*Math.PI,false);
+		   cans.fillStyle = 'white';
+		   cans.fill();
+	}
+        (function pageLoad(){
+		 hao();
+          ll++;
+		  ll=ll%60;
+			cans.beginPath();
+		   //第二个点
+		   nihao(ss[ll].X,ss[ll].Y);
+		   if(ll%60==0){
+		   hh++;
+		   hh=hh%60;
+		   }
+		   if(hh%12==0){
+		   zz++;
+		   zz=zz%60;
+		   }
+			nihao(dd[hh].X,dd[hh].Y);
+			nihao(ww[zz].X,ww[zz].Y);
+            cans.stroke();
+         setTimeout(arguments.callee,1000);
+        })();
+</script>
+</html>
