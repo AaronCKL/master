@@ -1,0 +1,13 @@
+<ion-view view-title="选择城市">
+  <ion-content>
+    <ion-toggle class="item item-toggle" ng-repeat="y in items" ng-model="y.checked" ng-change="myFunc(y.id)" >
+      {{y.city}}
+      <label class="toggle toggle-calm">
+        <input type="checkbox">
+        <div class="track">
+          <div class="handle"></div>
+        </div>
+      </label>
+    </ion-toggle>
+  </ion-content>
+</ion-view>
