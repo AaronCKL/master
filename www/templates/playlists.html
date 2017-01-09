@@ -1,0 +1,11 @@
+<ion-view view-title="注意保暖哦">
+  <ion-content>
+      <div style="position:relative;width: 100%;height: 200px;padding: 3%" ng-repeat="x in playlists" >
+        <img src="{{x.data.fx}}" style="width: 100%;height:100%;border-radius: 25px;">
+        <div style="position: absolute;left: 37%;top:30%;font-family:Microsoft YaHei!important;font-size:40px;color:white">{{x.data.cityName}}</div>
+        <div style="position: absolute;left: 33%;top:60%;color:white;font-size: 17px;font-family:SimSun;">
+        {{x.data.qw}} {{x.data.fl}}
+          {{x.data.tq}}
+        </div>
+  </ion-content>
+</ion-view>
